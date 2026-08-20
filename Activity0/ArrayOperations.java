@@ -3,6 +3,7 @@ package Activity0;
 import java.util.Random;
 
 public class ArrayOperations {
+    // printArray - Takes in an array to print it index by index.
     public static void printArray(int[] array){
         for (int i = 0; i < array.length; i++){
             System.out.println("[" + i + "] - " + array[i]);
@@ -18,9 +19,9 @@ public class ArrayOperations {
     }
 
     public static int[] copyArray(int[] array){
-        int[] copyOfArray = {};
+        int[] copyOfArray = new int[array.length];
         for (int i = 0; i < array.length; i++){
-            copyOfArray[i]=  array[i];
+            copyOfArray[i] = array[i];
         }
         return copyOfArray;
     }
@@ -34,7 +35,7 @@ public class ArrayOperations {
     }
 
     public static int[] generateIntArray(int length, int max){
-        int[] randomArray = {};
+        int[] randomArray = new int[length];
         Random random = new Random();
         for (int i = 0; i < length; i++){
             randomArray[i] = random.nextInt(max);
