@@ -1,6 +1,6 @@
 package Activity0;
 
-public class Activity0 {
+public class Main {
     /**
      * public - access spec
      * static - def of function

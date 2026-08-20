@@ -1,11 +1,12 @@
 package Activity0;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class ArrayOperations {
     public static void printArray(int[] array){
-        System.out.println(Arrays.toString(array));
+        for (int i = 0; i < array.length; i++){
+            System.out.println("[" + i + "] - " + array[i]);
+        }
     }   
 
     public static boolean isArrayEmpty(int[] array){
