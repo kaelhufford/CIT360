@@ -1,8 +1,5 @@
 package Activity0;
 
-import java.util.Random;
-
-import javax.swing.plaf.TreeUI;
 
 public class ArrayOperations {
     /** printArray - Takes in an array to print it index by index.
@@ -50,9 +47,8 @@ public class ArrayOperations {
      */
     public static int[] generateIntArray(int length, int max){
         int[] randomArray = new int[length];
-        Random random = new Random();
         for (int i = 0; i < length; i++){
-            randomArray[i] = Math.round(random.);
+            randomArray[i] = (int) Math.round(Math.random() * max);
         }   
         return randomArray;
     }
