@@ -13,13 +13,22 @@ public class Main {
 
         // Rreferencing ArrayOperations class to use static methods degined in the class
         ArrayOperations.printArray(testArray);
+
         System.out.println(ArrayOperations.isArrayEmpty(testArray));
+
         ArrayOperations.printArray(ArrayOperations.copyArray(testArray));
+
         System.out.println(ArrayOperations.areArraysEqual(testArray, testArray));
+
         ArrayOperations.printArray(ArrayOperations.generateIntArray(5, 10));
+
         System.out.println(ArrayOperations.findMaxInArray(testArray));
+
         System.out.println(ArrayOperations.findMinInArray(testArray));
+
         ArrayOperations.printArray(ArrayOperations.removeDuplicatesFromArray(testArray));
+
+        System.out.println(ArrayOperations.exists(testArray, 3));
    
     }
 }

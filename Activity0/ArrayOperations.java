@@ -103,4 +103,18 @@ public class ArrayOperations {
         }
         return noDupeArray;
     }
+
+    /** exists - Checks if a(Array) contains q(Querey) inside it.
+     * @param a - Array being searched through
+     * @param q - Query, whats being looked for
+     * @return T/F if q exists
+    */
+    public static boolean exists(int[] a, int q){
+        for (int i = 0; i < a.length; i++){
+            if (a[i] == q) { return true; }
+        }
+
+        return false;
+    }
+
 }
