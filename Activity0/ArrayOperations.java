@@ -3,21 +3,22 @@ package Activity0;
 import java.util.Random;
 
 public class ArrayOperations {
-    // printArray - Takes in an array to print it index by index.
+    /** printArray - Takes in an array to print it index by index.
+     */
     public static void printArray(int[] array){
         for (int i = 0; i < array.length; i++){
             System.out.println("[" + i + "] - " + array[i]);
         }
     }   
 
+    /** isArrayEmpty - Takes an array to tell if the given array is empty or null
+     */
     public static boolean isArrayEmpty(int[] array){
-        if (array.length == 0 || array == null){
-            return true;
-        } else {
-            return false;   
-        }
+        return array.length == 0 || array == null;
     }
 
+    /**copyArray - Returns a copy of the given array
+     */
     public static int[] copyArray(int[] array){
         int[] copyOfArray = new int[array.length];
         for (int i = 0; i < array.length; i++){
@@ -26,6 +27,8 @@ public class ArrayOperations {
         return copyOfArray;
     }
 
+    /**areArraysEqual - Returns T/F if the two given arrays are index for index equal
+     */
     public static boolean areArraysEqual(int[] arrayOne, int[] arrayTwo){
         if (arrayOne == arrayTwo){
             return true;
@@ -34,6 +37,8 @@ public class ArrayOperations {
         }
     }
 
+    /** generateIntArray - Returns a randomly generated array based off of the length
+     */
     public static int[] generateIntArray(int length, int max){
         int[] randomArray = new int[length];
         Random random = new Random();
@@ -43,6 +48,8 @@ public class ArrayOperations {
         return randomArray;
     }
 
+    /** findMaxInArray - Returns the max value in the array
+     */
     public static int findMaxInArray(int[] array){
         int maxValue = array[0];
         for (int i = 0; i < array.length; i++){
@@ -51,6 +58,8 @@ public class ArrayOperations {
         return maxValue;
     }
 
+    /** findMinInArray - Returns the min value in the given array
+     */
     public static int findMinInArray(int[] array){
         int minValue = array[0];
         for (int i = 0; i < array.length; i++){
@@ -59,6 +68,8 @@ public class ArrayOperations {
         return minValue;
     }
 
+    /** removeDuplicatesFromArray - Returns an array that has all copies of the given array removed
+     */
     public static int[] removeDuplicatesFromArray(int[] array){
         int flagValue = -999999991;
         int[] clonedArray = array.clone();
