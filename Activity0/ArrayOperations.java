@@ -6,7 +6,7 @@ public class ArrayOperations {
      */
     public static void printArray(int[] array){
         for (int i = 0; i < array.length; i++){
-            System.out.println("[" + i + "] - " + array[i]);
+            System.out.print(array[i] + " - ");
         }
     }   
 
@@ -115,6 +115,59 @@ public class ArrayOperations {
         }
 
         return false;
+    }
+
+    //! SimpleSorting!!
+
+    /**bubbleSort - Sorts the array using a buble sort */
+    public static void bubbleSort(int[] a){
+        for (int i = 0; i < a.length-1; i++){ // "a.length-1" because we dont want a ArrayOutOfIndex
+            for (int j = 0; j < a.length - i - 1; j++){ // "a.length - i - 1" We dont want to pass what has already been changed
+                if (a[j] > a[j+1]){
+                    swap(a, j+1, j);
+                }
+            }
+        }
+    }
+
+    /**selectionSort - Sorts the array using a selectionSort */
+    public static void selectionSort(int[] a){
+        for (int i = 0; i < a.length; i++){
+            //Index of the smallest value found
+            int jMin = i;
+
+            // Loop through array and record the smallest values index
+            for (int j = i + 1; j < a.length; j++){
+                if (a[j] < a[jMin]){
+                    jMin = j;
+    
+                }
+                swap(a, jMin, j);
+            }
+        }
+    }
+
+    /** insertionSort - Sorts given array using insertion sort method */
+    public static void insertionSort(int[] a){
+        for (int i = 0; i < a.length; i++){
+            int current = a[i];
+            int j = i - 1;
+            
+            // Walk back throug harray and shift elements until we get a smaller element
+            while (j >= 0 && a[j] > current) {
+                a[j+1] = a[j];
+                j--;
+            }
+            
+            a[j+1] = current;
+
+        }
+    }
+
+    public static void swap(int[] a, int from, int to){
+        int tmp = a[from];
+        a[from] = a[to]; 
+        a[to] = tmp;
     }
 
 }
