@@ -153,7 +153,7 @@ public class ArrayOperations {
             int current = a[i];
             int j = i - 1;
             
-            // Walk back throug harray and shift elements until we get a smaller element
+            // Walk back through array and shift elements until we get a smaller element
             while (j >= 0 && a[j] > current) {
                 a[j+1] = a[j];
                 j--;
