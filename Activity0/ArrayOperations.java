@@ -164,6 +164,39 @@ public class ArrayOperations {
         }
     }
 
+    // Only compared half, then half, then half. ect... then groups. Efficient for memory
+    public static void quickSort(int[] arr, int low, int high ){
+        //* Base Case -- Checking if the two bounds are on or equal to one another */
+        if (low >= high){
+            return; // An array of 1 is sorted
+        }
+
+        int pivot = arr[high]; // Picks last element for pivot point || Identifying factor of a quickSort
+        int counter = low; // Where to put the pivot
+        
+        for (int i = low; i < high; i++){
+            if (arr[i] < pivot){
+                swap(arr, i, counter);
+                counter++;
+            }
+        }
+
+        // Insert pivot into right spot
+        swap(arr, high, counter);
+
+        // Right side
+        quickSort(arr, low, counter - 1);
+
+        // Left side
+        quickSort(arr, high, counter + 1);
+
+    }
+
+    public static void mergeSort(int[] arr, int lowBound, int highBound){
+        
+
+    }
+
     public static void swap(int[] a, int from, int to){
         int tmp = a[from];
         a[from] = a[to]; 
