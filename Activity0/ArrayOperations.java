@@ -191,12 +191,7 @@ public class ArrayOperations {
         quickSort(arr, high, counter + 1);
 
     }
-
-    public static void mergeSort(int[] arr, int lowBound, int highBound){
-        
-
-    }
-
+    
     public static void swap(int[] a, int from, int to){
         int tmp = a[from];
         a[from] = a[to]; 
