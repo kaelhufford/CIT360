@@ -5,16 +5,16 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-class LinkedListTest {
+public class LinkedListTest {
 
 	@Test
-	void testInit() {
+	public void testInit() {
 		LinkedList list = new LinkedList();
 		assertNotNull(list);	
 	}
 	
 	@Test
-	void testAddFirst() {
+	public void testAddFirst() {
 		String elements = "ABCDEFGHI";
 		LinkedList<String> list = new LinkedList();
 
@@ -25,7 +25,7 @@ class LinkedListTest {
 	}
 	
 	@Test
-	void testRemoveFirst() {
+	public void testRemoveFirst() {
 		String elements = "ABCDEFGHI";
 		LinkedList<String> list = new LinkedList<>();
 
@@ -41,7 +41,7 @@ class LinkedListTest {
 	}
 	
 	@Test
-	void testRemoveLast() {
+	public void testRemoveLast() {
 		String elements = "ABCDEFGHI";
 		LinkedList<String> list = new LinkedList<>();
 
@@ -57,7 +57,7 @@ class LinkedListTest {
 	}
 	
 	@Test
-	void testGet() {
+	public void testGet() {
 		String elements = "ABCDEFGHI";
 		LinkedList<String> list = new LinkedList<>();
 
@@ -73,7 +73,7 @@ class LinkedListTest {
 	}
 	
 	@Test
-	void testContains() {
+	public void testContains() {
 		String elements = "ABCDEFGHI";
 		LinkedList<String> list = new LinkedList<>();
 
@@ -87,7 +87,7 @@ class LinkedListTest {
 	}
 	
 	@Test
-	void testSize() {
+	public void testSize() {
 		String elements = "ABCDEFGHI";
 		LinkedList<String> list = new LinkedList<>();
 
