@@ -1,4 +1,4 @@
-package Test;
+package AbstractDataTypes.LinkedLists;
 
 public interface ListI<E> {
 	/**
@@ -6,7 +6,7 @@ public interface ListI<E> {
 	 * @param obj
 	 */
 	void addFront(E obj);
-    
+	
 	
 	/**
 	 * Appends an element to the end of the List.

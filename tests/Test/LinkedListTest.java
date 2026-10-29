@@ -5,21 +5,26 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
+import AbstractDataTypes.LinkedLists.LinkedList;
+
 public class LinkedListTest {
 
 	@Test
 	public void testInit() {
-		LinkedList list = new LinkedList();
+		LinkedList<String> list = new LinkedList<>();
 		assertNotNull(list);	
+		assertEquals(0, list.size());
 	}
 	
 	@Test
 	public void testAddFirst() {
 		String elements = "ABCDEFGHI";
-		LinkedList<String> list = new LinkedList();
+		LinkedList<String> list = new LinkedList<>();
 
 		for(int i = 0; i < elements.length(); i++) {
-			list.addFront(elements);
+			list.addFront(elements.substring(i, i+1));
+			assertEquals(elements.substring(i, i+1), list.get(0));
+			assertEquals(i+1, list.size());
 		}
 		
 	}
@@ -30,14 +35,15 @@ public class LinkedListTest {
 		LinkedList<String> list = new LinkedList<>();
 
 		for(int i = 0; i < elements.length(); i++) {
-			list.addFront(elements);
+			list.addFront(elements.substring(i, i+1));
 		}
 		
 		for(int i = elements.length(); i > 0; i--) {
 			String tmp = list.removeFront();
 			
-			assertEquals(tmp.charAt(0), elements.substring(i-1, i).charAt(0));
+			assertEquals(elements.substring(i-1, i), tmp);
 		}
+		assertEquals(0, list.size());
 	}
 	
 	@Test
@@ -46,14 +52,15 @@ public class LinkedListTest {
 		LinkedList<String> list = new LinkedList<>();
 
 		for(int i = 0; i < elements.length(); i++) {
-			list.addFront(elements);
+			list.addBack(elements.substring(i, i+1));
 		}
 		
-		for(int i = 0; i < elements.length(); i++) {
+		for(int i = elements.length()-1; i >= 0; i--) {
 			String tmp = list.removeBack();
 			
-			assertEquals(tmp.charAt(0), elements.charAt(i));
+			assertEquals(elements.substring(i, i+1), tmp);
 		}
+		assertEquals(0, list.size());
 	}
 	
 	@Test
@@ -62,13 +69,13 @@ public class LinkedListTest {
 		LinkedList<String> list = new LinkedList<>();
 
 		for(int i = 0; i < elements.length(); i++) {
-			list.addBack(elements);
+			list.addBack(elements.substring(i, i+1));
 		}
 		
 		for(int i = 0; i < elements.length(); i++) {
 			String tmp = list.get(i);
 			
-			assertEquals(tmp.charAt(0), elements.charAt(i));
+			assertEquals(elements.substring(i, i+1), tmp);
 		}
 	}
 	
@@ -78,7 +85,7 @@ public class LinkedListTest {
 		LinkedList<String> list = new LinkedList<>();
 
 		for(int i = 0; i < elements.length(); i++) {
-			list.addBack(elements);
+			list.addBack(elements.substring(i, i+1));
 		}
 		
 		for(int i = 0; i < elements.length(); i++) {
@@ -95,6 +102,6 @@ public class LinkedListTest {
 			list.addBack(elements.substring(i, i+1));
 		}
 		
-		assertEquals(list.size(), elements.length());
+		assertEquals(elements.length(), list.size());
 	}
 }

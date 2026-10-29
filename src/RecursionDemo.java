@@ -10,8 +10,9 @@ public class RecursionDemo {
 
     /* Recursive Method: calls itself */
     public static int fact(int n){
+        if (n < 0) { throw new IllegalArgumentException("n must be nonnegative."); }
         //* Base Case */
-        if (n == 1){
+        if (n <= 1){
             return 1;
         }
 
@@ -20,8 +21,9 @@ public class RecursionDemo {
     }
 
     public static int sum(int n){
-        if (n == 1){
-            return 1;
+        if (n < 0) { throw new IllegalArgumentException("n must be nonnegative."); }
+        if (n == 0){
+            return 0;
         }
 
         return n + sum(n - 1);
@@ -29,6 +31,7 @@ public class RecursionDemo {
 
     // Show stack
     public static void rev(int n){
+        if (n < 0) { throw new IllegalArgumentException("n must be nonnegative."); }
         if (n==0){
             return;
         }
@@ -61,8 +64,9 @@ public class RecursionDemo {
     }
 
     public static String bin(int n){
-        if (n==1){
-            return "1";
+        if (n < 0) { throw new IllegalArgumentException("n must be nonnegative."); }
+        if (n <= 1){
+            return Integer.toString(n);
         }
         //* Integer division | "+" concatinates, not adds. */
         return bin(n / 2) + (n % 2);
