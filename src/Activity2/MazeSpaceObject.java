@@ -1,22 +1,19 @@
 package Activity2;
 
 public class MazeSpaceObject {
-    //* spaceObject object with property of "isWall", "isStart", "isFinish", "hasVisited", "location", "dist"
+    //* spaceObject object with property of "isWall", "isStart", "isFinish", "hasVisited", "location"
     
     /**
-     * Space object has the following properties: (EACH ONE NEEDS THEIR OWN SETTER AND GETTER)
+     * Space object has the following properties
      * - isWall : If the space is a wall
      * - isStart : If the space is the starting point
      * - isFinish : If the space is the finish spot
      * 
      * - hasVisited : Tells wether or not the solver has visited this space before
-     * - location : Maybe create a Vector2D class to easily navigate this? or just hold data in (X, Y)?
+     * - location 
      *  - row / y
      *  - column / x
      * 
-     * - dist : Represents the distance this spot is from the starting spot
-     * 
-     *TODO: Things to look into: Maybe make a Vector2D to quickly calculate distance between two points, and deal with distance and location?
      */
 
     private boolean isWall, isStart, isFinish, hasVisited, isCurrent, isPath;

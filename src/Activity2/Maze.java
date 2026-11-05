@@ -29,10 +29,10 @@ public class Maze {
     public void print() {printMaze(maze);}
 
     /**
-     ** 0. Create a spaceObject object with property of "isWall", "isStart", "isFinish", "hasVisited", "location", "dist"
+     ** 0. Create a spaceObject object with property of "isWall", "isStart", "isFinish", "hasVisited", "location"
      *
      ** 1. Create 2d array (X by Y) filled with spaceObject.
-     *?  a. When generating the wall add 1 to X and Y to make the outer border all walls
+     *?  a. When generating the wall add 2 to X and Y to make the outer border all walls
      *
      ** 2. Randomly fill array with "obsticles"
      *?  a. if(rnd < .25) {spaceObject.setWall()}
@@ -40,28 +40,22 @@ public class Maze {
      ** 3. Set random start and end spaceObject
      *?   a. If random start spot is a wall, override spaceObject to be the start spot
      *?   b. If random end spot it wall, override spaceObject to be is finish spot
-     *?   c. Create a dist var to track distance
      *
-     ** 4. Push start to stack // Need to do with queues.
+     * 
+     ** 4. Start solving maze using DFS(Stack), BFS(Queue).
      *?  a. Continue to push stuff to stack until the stack is empty Ex:
      *      1. while (!stack.isEmpty()) {
      *      2.   curr = stack.pop()
      *      3.   //look around for walkable spots (if !spaceObject.isWall, it is walkable)
      *      4.      Also check if NWSE spaceObject isFinish == true
-     *      5.      if North isWalkable && !hasVisited, n.dist = dist, then push onto stack
-     *      6.      if East isWalkable && !hasVisited, n.dist = dist, then push onto stack
-     *      7.      if South isWalkable && !hasVisited, n.dist = dist, then push onto stack
-     *      8.      if West isWalkable && !hasVisited, n.dist = dist, then push onto stack
+     *      5.      if North isWalkable && !hasVisited, then add to solver
+     *      6.      if East isWalkable && !hasVisited, then add to solver
+     *      7.      if South isWalkable && !hasVisited, then add to solver
+     *      8.      if West isWalkable && !hasVisited, then add to solver
      *      9.
      *     10.   if (curr.isFinish) {break;} // Maze is complete and finished.
-     *     12.   dist++;
      *     13. }
-     *
-     ** 5. Travel back to the starting position using the lowest dist value of alls spaceObjects, or only available spaceObjects
-     *?  a. Look into storing the path visited in an array to prevent having to do this ^^ and reset everytime you go back to a spot adjacent to the starting spot
      */
-
-    // If finished early and works, find ways to add new things to make it more interesting.
 
     private MazeSpaceObject[][] createMaze(int xLen, int yLen){
 
@@ -78,7 +72,7 @@ public class Maze {
             // Iterate through each column
             for (int column = 0; column < columns; column++){
 
-                // If on top row, bottom row, left column or middle column, make border/wall
+                // If on top row, bottom row, left column or right column, make border/wall
                 boolean border = row == 0 || row == rows - 1 || column == 0 || column == columns -1;
 
                 // Make object a wall if its a border of randomly assigned

@@ -16,7 +16,7 @@ public interface HashI<K, V> {
 	 * @param value
 	 * @return
 	 */
-	boolean remove(K key, V value);
+	V remove(K key);
 	
 	/**
 	 * Returns a value associated with a key
