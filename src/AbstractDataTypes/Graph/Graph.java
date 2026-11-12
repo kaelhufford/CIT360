@@ -82,6 +82,7 @@ public class Graph {
         resetPrevData();
 
         Node curr = start;
+        start.distance = 0;
 
         Scanner keybScanner = new Scanner(System.in);
 
@@ -135,7 +136,7 @@ public class Graph {
             curr = curr.prev;
         }
 
-        print("Shortest path from " + start + " to " + end + ":")
+        print("Shortest path from " + start + " to " + end + ":");
 
         // Print out path, LIFO, start -> end
         while(!path.isEmpty()){
@@ -148,13 +149,12 @@ public class Graph {
 
     private void printDijkstrasTable(){
         System.out.println();
-        System.out.printf("%-10s%-10s%-15s%-10s\n", "NAME", "VISITED", "DIST", "PREV");
-        for (int i = 0; i < nodes.size(); i++){
-            System.out.printf("%-10s", nodes.get(i).name);
-            System.out.printf("%-10s", nodes.get(i).visited);
-            System.out.printf("%-10s", nodes.get(i).distance);
-            System.out.printf("%-10s\n", nodes.get(i).prev);
-        }
+
+        String rowFormat = "%-10s%-10s%-15s%-10s%n";
+        System.out.printf(rowFormat, "NAME", "VISITED", "DIST", "PREV");
+
+        for (Node node : nodes) { System.out.printf(rowFormat, node.name, node.visited, node.distance, node.prev); }
+        
         System.out.println();
     }
 
