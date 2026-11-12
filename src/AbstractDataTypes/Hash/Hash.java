@@ -2,16 +2,13 @@ import java.util.Iterator;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
-import java.util.Objects;
-
-import javax.swing.plaf.TreeUI;
 
 public class Hash<K, V> implements HashI<K, V>, Iterable<K> {
 
     private int tableSize;
     private int numElements;
 
-    private final boolean DEBUG = true; 
+    private final boolean DEBUG = false; 
 
     private double maxLoadFactor; // lambda
 
@@ -19,6 +16,9 @@ public class Hash<K, V> implements HashI<K, V>, Iterable<K> {
 
 
     public Hash(int tableSize){
+        if (tableSize <= 0) {
+            throw new IllegalArgumentException("Table size must be positive");
+        }
         this.tableSize = tableSize;
 
         table = (LinkedList<HashElement<K,V>>[]) new LinkedList[tableSize];
@@ -35,7 +35,9 @@ public class Hash<K, V> implements HashI<K, V>, Iterable<K> {
     @Override
     public boolean add(K key, V value) {
         // Is full check
-        if (loadFactor() > maxLoadFactor) {resize(tableSize * 2);}
+        if ((numElements + 1.0) / tableSize > maxLoadFactor) {
+            resize(tableSize * 2);
+        }
 
         // Create hash element
         HashElement<K,V> element = new HashElement<>(key, value);
@@ -53,26 +55,33 @@ public class Hash<K, V> implements HashI<K, V>, Iterable<K> {
 
     @Override
     public V remove(K key) {
-        // Returns index/LL at position
-        int index = hash(key.hashCode());
-
-        // Each element
-        //To find the K:V we are trying to remove
-        int num = 0;
-        for (HashElement<K,V> element : table[index]){
-            if (((Comparable) element.key).compareTo(key) == 0){
-                return element.value;
-
+        Iterator<HashElement<K,V>> entries = table[hash(key.hashCode())].iterator();
+        while (entries.hasNext()) {
+            HashElement<K,V> entry = entries.next();
+            if (key.equals(entry.key)) {
+                entries.remove();
+                numElements--;
+                return entry.value;
             }
-        }        
+        }
         return null;
     }
 
     @Override
-    public V getValue(K key) {return null;}
+    public V getValue(K key) {
+        for (HashElement<K,V> entry : table[hash(key.hashCode())]) {
+            if (key.equals(entry.key)) {
+                return entry.value;
+            }
+        }
+        return null;
+    }
 
     @Override
     public void resize(int newSize) {
+        if (newSize <= 0) {
+            throw new IllegalArgumentException("Table size must be positive");
+        }
         // Make a new array of linked lists based on the new size
         LinkedList<HashElement<K,V>>[] newTable = (LinkedList<HashElement<K,V>>[]) new LinkedList[newSize];
 
@@ -81,14 +90,11 @@ public class Hash<K, V> implements HashI<K, V>, Iterable<K> {
         for(int i = 0; i < newSize; i++){
             newTable[i] = new LinkedList<HashElement<K,V>>();
         }
-        // Rehash everything based on new length of the array of LLs
-        // for char in string vvvv
-        for(K key : this){
-            V value = getValue(key);
-            HashElement<K,V> element = new HashElement<>(key, value);
-        
-            int index = hash(key.hashCode());
-            newTable[index].addFirst(element);
+        for (LinkedList<HashElement<K,V>> bucket : table) {
+            for (HashElement<K,V> entry : bucket) {
+                int index = hash(entry.key.hashCode(), newSize);
+                newTable[index].addLast(entry);
+            }
         }
 
         table = newTable;
@@ -129,9 +135,13 @@ public class Hash<K, V> implements HashI<K, V>, Iterable<K> {
     }
 
     private int hash(int hashVal) {
+        return hash(hashVal, tableSize);
+    }
+
+    private int hash(int hashVal, int capacity) {
         hashVal = hashVal & 0x7FFFFFFF; // Force posititve in the fastest way possible | One assembly instruction
         if(DEBUG) {System.out.println(hashVal);} //Debug = print out stuff
-        hashVal = hashVal % tableSize; // Hash is based off of the table
+        hashVal = hashVal % capacity; // Hash is based off of the table
         if(DEBUG) {System.out.println(hashVal);}  //Debug = print out stuff
         return hashVal;
     }
